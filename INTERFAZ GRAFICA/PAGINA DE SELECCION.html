@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Alith Rodriguez Pacheco">
+    <meta name="generator" content="0.118.2">
+    <title>Signin Template · Arop v5.3</title>
+
+    <link rel="canonical" href="https://arop.com/docs/5.3/inventarios/sign-in/">
+
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      /*Estilo para la ventana de color, oculta por defecto*/
+      #modal {
+        display: none;
+        position: fixed; /* Mantiene la ventana emergente fija en la ventana del navegador */
+        top: 500px; /* Mueve la ventana emergente hacia abajo 50px desde la parte superior */
+        right: 50px; /* Mueve la ventana emergente hacia la derecha 50px desde el borde derecho */
+        width: 18%;
+        height: 25%;
+        background-color: rgba(131, 104, 206, 0.7); /* Fondo oscuro semitransparente */
+        justify-content: center;
+        align-items: center;
+        }
+        /* Estilos para el cuadro de opciones */
+        #cuadro-opciones {
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Estilos para el botón "Cerrar" */
+        #cerrar {
+            float: right;
+            cursor: pointer;
+        }
+
+        /* Estilos para el botón "Modo Oscuro" */
+        #modo-oscuro {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #333;
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Estilos para el botón */
+        .boton-redondo {
+            position: absolute; /* Establece la posición en relación con su contenedor */
+            bottom: 20px; /* Mueve el botón hacia abajo 20px desde el borde inferior */
+            right: 20px;
+            border-radius: 10px; /* Radio de los bordes redondos */
+            padding: 10px 20px; /* Espacio interno del botón */
+            background-color: #5e51d8; /* Color de fondo del botón */
+            color: white; /* Color del texto del botón */
+            border: none; /* Quita el borde del botón */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+        }
+      .centra-texto{
+        text-align: center;
+      }
+      label{
+        display: block;
+        margin-bottom: 10px;
+      }
+       /* Estilos para el botón */
+       .boton-interactivo {
+            padding: 10px 20px;
+            background-color: #6967b8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* Estilos para el cuadro de selección */
+        #seleccionaPagina {
+            padding: 5px;
+            width: 300px; /* Ancho de la barra de texto */
+            height: 30px; /* Altura de la barra de texto */
+            padding: 5px; /* Espaciado interno */
+            border: 2px solid #8f8cb0; /* Borde sólido azul */
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #f2f2f2; /* Color de fondo gris claro */
+            color: #333; /* Color del texto */
+            font-size: 16px; /* Tamaño de letra */
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="sign-in.css" type="text/css" rel="stylesheet">
+  </head>
+  <body class="d-flex align-items-center py-4 bg-body-tertiary">
+    <button onclick="mostrarModal()" class="boton-redondo">Cambiar Modo</button>
+
+    <!-- Ventana emergente -->
+    <div id="modal">
+        <div id="cuadro-opciones">
+            <span id="cerrar" onclick="cerrarModal()">&#10006;</span>
+            <h2>Elige un modo:</h2>
+            <button id="modo-oscuro" onclick="activarModoOscuro()" style="font-size: 20px;">Oscuro</button>
+            <button id="modo-normal" onclick="desactivarModoOscuro()" style="font-size: 20px;">Normal</button>
+            <button id="modo-auto" onclick="desactivarModoOscuro()" style="font-size: 20px;">Auto</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar la ventana emergente
+        function mostrarModal() {
+            var modal = document.getElementById("modal");
+            modal.style.display = "block";
+        }
+
+        // Función para cerrar la ventana emergente
+        function cerrarModal() {
+            var modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+
+        // Función para activar el modo oscuro
+        function activarModoOscuro() {
+            document.body.style.backgroundColor = "#333";
+            document.body.style.color = "white";
+            cerrarModal();
+        }
+
+        // Función para desactivar el modo oscuro
+        function desactivarModoOscuro() {
+            document.body.style.backgroundColor = "white";
+            document.body.style.color = "black";
+            cerrarModal();
+        }
+    </script>    
+<main class="form-pagina-de-seleccion w-100 m-auto">
+  <form>
+    <div class="centrar-imagen">
+      <img class="imagen" src="logo.png" alt="" width="210" height="210">
+    </div>
+    <div style="text-align: center;">
+    <label for="seleccionaPagina"  style="font-size: 20px;" style="text-align: center;">Selecciona una página:</label>
+    <select id="seleccionaPagina">
+        <option value="" >Selecciona una opción</option>
+        <option value="PROVEEDORES.html">Proveedores</option>
+        <option value="PRODUCTOS.html">Productos</option>
+        <option value="VENTAS.html">Ventas</option>
+    </select>
+    <button class="boton-interactivo" onclick="redireccionar()">Ir</button>
+  </div>
+
+    <script>
+        function redireccionar() {
+            var seleccion = document.getElementById("seleccionaPagina");
+            var paginaSeleccionada = seleccion.value;
+            if (paginaSeleccionada !== "Proveedores") {
+                window.location.href = paginaSeleccionada;
+            }
+        }
+    </script>
+    <br>
+    <br>
+    <p class="mt-5 mb-3 text-body-secondary" style="text-align: center;">&copy; 2022–2023</p>
+  </form>
+</main>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>
